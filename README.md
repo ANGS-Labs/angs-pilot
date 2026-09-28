@@ -17,3 +17,5 @@ Trusted evidence runs once for the pull request's GitHub-generated merge candida
 Each stage is bound to the exact SHA delivered by its authenticated GitHub event.
 
 For pull requests, the Runner also verifies the current GitHub test-merge SHA against the authenticated head and base pair before accepting evidence.
+
+That resolution uses a short-lived installation token scoped to this repository with pull-request read and checks write permissions only.
