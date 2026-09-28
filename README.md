@@ -15,3 +15,5 @@ The reusable trusted workflow is consumed from its immutable public commit SHA s
 Trusted evidence runs once for the pull request's GitHub-generated merge candidate and again for the merge queue's final combined candidate. The GitHub App-authored `ANGS Trusted Evidence` check is intended to be required for both stages.
 
 Each stage is bound to the exact SHA delivered by its authenticated GitHub event.
+
+For pull requests, the Runner also verifies the current GitHub test-merge SHA against the authenticated head and base pair before accepting evidence.
