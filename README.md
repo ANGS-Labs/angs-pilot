@@ -9,3 +9,5 @@ The trusted runner, workflow repository, and GitHub App remain separate trust bo
 ## First integration scenario
 
 The first pull request verifies the ordinary PR gate. After repository rules enable the merge queue, the queued candidate will exercise the separately authenticated `merge_group` evidence path.
+
+The reusable trusted workflow is consumed from its immutable public commit SHA so the pilot never follows a moving branch or tag.
