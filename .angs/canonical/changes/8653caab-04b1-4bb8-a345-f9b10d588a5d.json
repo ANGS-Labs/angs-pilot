@@ -1,0 +1,36 @@
+{
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "statement": "The sample function returns the selected mode",
+      "verification_profiles": [
+        "project-tests"
+      ]
+    }
+  ],
+  "actual_paths": [
+    "pilot.go",
+    "pilot_test.go"
+  ],
+  "history": [
+    {
+      "detail": "automation-authored live governance sample",
+      "event": "READY"
+    }
+  ],
+  "id": "8653caab-04b1-4bb8-a345-f9b10d588a5d",
+  "intent_confirmation": "USER_CONFIRMED",
+  "intent_summary": "Exercise the live positive Governance Check path",
+  "kind": "GOVERNANCE",
+  "lifecycle": "READY",
+  "requires_regate": false,
+  "risk": "LOW",
+  "satisfied_requirements": [],
+  "scope": [
+    "pilot.go",
+    "pilot_test.go"
+  ],
+  "source_refs": [],
+  "supersedes": [],
+  "unknown_association": false
+}
