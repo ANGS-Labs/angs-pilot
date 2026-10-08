@@ -1,0 +1,85 @@
+name: Create governance sample
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Governance sample to create
+        required: true
+        type: choice
+        options:
+          - positive
+          - scope-drift
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out main
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Create an automation-authored governance PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SAMPLE_MODE: ${{ inputs.mode }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/governance-${SAMPLE_MODE}-${GITHUB_RUN_ID}"
+          change_id="$(python3 -c 'import uuid; print(uuid.uuid4())')"
+          git checkout -b "${branch}"
+
+          python3 - "${SAMPLE_MODE}" <<'PY'
+          import pathlib, sys
+          mode = sys.argv[1]
+          source = pathlib.Path('pilot.go')
+          tests = pathlib.Path('pilot_test.go')
+          source.write_text(source.read_text() + f'''\n// GovernanceSample identifies the live {mode} governance sample.\nfunc GovernanceSample() string {{ return "{mode}" }}\n''')
+          tests.write_text(tests.read_text() + f'''\nfunc TestGovernanceSample(t *testing.T) {{\n\tif got := GovernanceSample(); got != "{mode}" {{\n\t\tt.Fatalf("GovernanceSample() = %q", got)\n\t}}\n}}\n''')
+          PY
+
+          mkdir -p .angs/canonical/changes
+          python3 - "${change_id}" "${SAMPLE_MODE}" <<'PY'
+          import json, pathlib, sys
+          change_id, mode = sys.argv[1:]
+          scope = ['pilot.go', 'pilot_test.go'] if mode == 'positive' else ['pilot.go']
+          value = {
+              'id': change_id,
+              'kind': 'GOVERNANCE',
+              'lifecycle': 'READY',
+              'intent_summary': f'Exercise the live {mode} Governance Check path',
+              'intent_confirmation': 'USER_CONFIRMED',
+              'scope': scope,
+              'actual_paths': scope,
+              'risk': 'LOW',
+              'acceptance': [{
+                  'id': 'AC-001',
+                  'statement': 'The sample function returns the selected mode',
+                  'verification_profiles': ['project-tests'],
+              }],
+              'satisfied_requirements': [],
+              'unknown_association': False,
+              'requires_regate': False,
+              'source_refs': [],
+              'supersedes': [],
+              'history': [{'event': 'READY', 'detail': 'automation-authored live governance sample'}],
+          }
+          path = pathlib.Path('.angs/canonical/changes') / f'{change_id}.json'
+          path.write_text(json.dumps(value, indent=2, sort_keys=True) + '\n')
+          PY
+
+          gofmt -w pilot.go pilot_test.go
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add pilot.go pilot_test.go .angs/canonical/changes
+          git commit -m "test: add ${SAMPLE_MODE} governance sample"
+          git push origin "${branch}"
+          gh pr create \
+            --base main \
+            --head "${branch}" \
+            --title "Governance ${SAMPLE_MODE} live sample" \
+            --body "Automation-authored non-production sample for the ANGS Governance Check. A human approval is intentionally required."

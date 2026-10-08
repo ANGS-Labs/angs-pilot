@@ -1,0 +1,36 @@
+{
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "statement": "The pilot calls the immutable full-governance workflow",
+      "verification_profiles": [
+        "project-tests"
+      ]
+    }
+  ],
+  "actual_paths": [
+    ".github/workflows/create-governance-sample.yml",
+    ".github/workflows/pilot-gate.yml"
+  ],
+  "history": [
+    {
+      "detail": "operator-confirmed governance bootstrap",
+      "event": "READY"
+    }
+  ],
+  "id": "11111111-1111-4111-8111-111111111111",
+  "intent_confirmation": "USER_CONFIRMED",
+  "intent_summary": "Bootstrap the complete ANGS Governance Check pilot",
+  "kind": "GOVERNANCE",
+  "lifecycle": "READY",
+  "requires_regate": false,
+  "risk": "LOW",
+  "satisfied_requirements": [],
+  "scope": [
+    ".github/workflows/create-governance-sample.yml",
+    ".github/workflows/pilot-gate.yml"
+  ],
+  "source_refs": [],
+  "supersedes": [],
+  "unknown_association": false
+}
