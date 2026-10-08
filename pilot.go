@@ -10,5 +10,5 @@ func NormalizeCandidate(value string) string {
 // GovernanceSample identifies the live positive governance sample.
 func GovernanceSample() string { return "positive" }
 
-// GovernanceSample identifies the live scope-drift governance sample.
-func GovernanceSample() string { return "scope-drift" }
+// GovernanceScopeDriftSample identifies the live scope-drift governance sample.
+func GovernanceScopeDriftSample() string { return "scope-drift" }
