@@ -13,3 +13,9 @@ func TestNormalizeCandidateEmpty(t *testing.T) {
 		t.Fatalf("NormalizeCandidate() = %q, want empty", got)
 	}
 }
+
+func TestGovernanceSample(t *testing.T) {
+	if got := GovernanceSample(); got != "positive" {
+		t.Fatalf("GovernanceSample() = %q", got)
+	}
+}

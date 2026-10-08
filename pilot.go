@@ -6,3 +6,6 @@ import "strings"
 func NormalizeCandidate(value string) string {
 	return strings.ToLower(strings.TrimSpace(value))
 }
+
+// GovernanceSample identifies the live positive governance sample.
+func GovernanceSample() string { return "positive" }
