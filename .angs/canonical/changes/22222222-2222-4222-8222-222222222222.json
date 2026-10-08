@@ -1,0 +1,34 @@
+{
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "statement": "The pilot calls the immutable workflow that binds the event PR head SHA",
+      "verification_profiles": [
+        "project-tests"
+      ]
+    }
+  ],
+  "actual_paths": [
+    ".github/workflows/pilot-gate.yml"
+  ],
+  "history": [
+    {
+      "detail": "operator-confirmed trusted head-binding migration",
+      "event": "READY"
+    }
+  ],
+  "id": "22222222-2222-4222-8222-222222222222",
+  "intent_confirmation": "USER_CONFIRMED",
+  "intent_summary": "Pin the pilot to the race-free trusted PR head binding workflow",
+  "kind": "GOVERNANCE",
+  "lifecycle": "READY",
+  "requires_regate": false,
+  "risk": "LOW",
+  "satisfied_requirements": [],
+  "scope": [
+    ".github/workflows/pilot-gate.yml"
+  ],
+  "source_refs": [],
+  "supersedes": [],
+  "unknown_association": false
+}

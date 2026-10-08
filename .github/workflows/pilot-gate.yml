@@ -34,4 +34,4 @@ jobs:
       actions: read
       id-token: write
       pull-requests: read
-    uses: ANGS-Labs/trusted-workflows/.github/workflows/angs-verify.yml@1019e7b99be762d9495d863e3bbaaabe252cd8a9
+    uses: ANGS-Labs/trusted-workflows/.github/workflows/angs-verify.yml@1f34b30f1004331fa945ea4e40d1cdc591fdc0c6
