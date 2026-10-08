@@ -1,0 +1,34 @@
+{
+  "acceptance": [
+    {
+      "id": "AC-001",
+      "statement": "The sample function returns the selected mode",
+      "verification_profiles": [
+        "project-tests"
+      ]
+    }
+  ],
+  "actual_paths": [
+    "pilot.go"
+  ],
+  "history": [
+    {
+      "detail": "automation-authored live governance sample",
+      "event": "READY"
+    }
+  ],
+  "id": "dc98bc10-27a2-48d0-9f5a-af3a089e62d9",
+  "intent_confirmation": "USER_CONFIRMED",
+  "intent_summary": "Exercise the live scope-drift Governance Check path",
+  "kind": "GOVERNANCE",
+  "lifecycle": "READY",
+  "requires_regate": false,
+  "risk": "LOW",
+  "satisfied_requirements": [],
+  "scope": [
+    "pilot.go"
+  ],
+  "source_refs": [],
+  "supersedes": [],
+  "unknown_association": false
+}
