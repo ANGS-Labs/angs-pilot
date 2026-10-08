@@ -19,3 +19,9 @@ func TestGovernanceSample(t *testing.T) {
 		t.Fatalf("GovernanceSample() = %q", got)
 	}
 }
+
+func TestGovernanceScopeDriftSample(t *testing.T) {
+	if got := GovernanceScopeDriftSample(); got != "scope-drift" {
+		t.Fatalf("GovernanceScopeDriftSample() = %q", got)
+	}
+}
